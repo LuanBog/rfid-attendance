@@ -15,9 +15,10 @@ router.route('/add').post((req, res) => {
     const address = req.body.address;
     const contactNumber = Number(req.body.contactNumber);
     const section = req.body.section;
+    const guardianName = req.body.adviserName;
     const adviserName = req.body.adviserName;
 
-    const newStudent = new Student({ fullName, birthday, address, contactNumber, section, adviserName });
+    const newStudent = new Student({ fullName, birthday, address, contactNumber, section, guardianName, adviserName });
 
     newStudent.save()
         .then(() => res.json(newStudent))
@@ -42,6 +43,7 @@ router.route('/update/:id').post((req, res) => {
             student.address = req.body.address;
             student.contactNumber = Number(req.body.contactNumber);
             student.section = req.body.section;
+            student.guardianName = req.body.guardianName;
             student.adviserName = req.body.adviserName;
 
             student.save()

@@ -7,6 +7,7 @@ const studentSchema = new Schema({
     address: { type: String, required: true },
     contactNumber: { type: Number, required: true },
     section: { type: String, required: true },
+    guardianName: { type: String, required: true },
     adviserName: { type: String, required: true }
 });
 

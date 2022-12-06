@@ -3,7 +3,10 @@ let Student = require('../models/Student.model');
 
 router.route('/').get((req, res) => {
     Student.find()
-        .then(students => res.json(students))
+        .then(students => {
+            console.log("Got a request to get data");
+            res.json(students);
+        })
         .catch(err => res.status(400).json(`Error: ${err}`));
 });
 
@@ -21,18 +24,27 @@ router.route('/add').post((req, res) => {
     const newStudent = new Student({ fullName, birthday, address, contactNumber, section, guardianName, adviserName });
 
     newStudent.save()
-        .then(() => res.json(newStudent))
+        .then(() => {
+            console.log(`Added a new student: ${fullName}`);
+            res.json(newStudent);
+        })
         .catch(err => res.status(400).json(`Error ${err}`));
 });
 
 router.route('/:id').get((req, res) => {
     Student.findById(req.params.id)
-        .then(student => res.json(student))
+        .then(student => {
+            console.log(`Got a request to find student with id of ${req.params.id}`);
+            res.json(student);
+        })
         .catch(err => res.status(400).json(`Error ${err}`));
 });
 router.route('/:id').delete((req, res) => {
     Student.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Student deleted'))
+        .then(() => {
+            console.log(`Deleted student with id of ${req.params.id}`);
+            res.json('Student deleted')
+        })
         .catch(err => res.status(400).json(`Error ${err}`));
 });
 router.route('/update/:id').post((req, res) => {
@@ -47,10 +59,13 @@ router.route('/update/:id').post((req, res) => {
             student.adviserName = req.body.adviserName;
 
             student.save()
-                .then(() => res.json('Student updated'))
+                .then(() => { 
+                    console.log(`${student.fullName} got updated`);
+                    res.json('Student updated');
+                })
                 .catch(err => res.status(400).json(`Error ${err}`));
         })
-        .catch(err => res.status(400).json(`Error ${err}`));;
+        .catch(err => res.status(400).json(`Error ${err}`));
 });
 
 module.exports = router;

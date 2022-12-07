@@ -19,7 +19,7 @@ router.route('/add').post((req, res) => {
     const address = req.body.address;
     const contactNumber = Number(req.body.contactNumber);
     const section = req.body.section;
-    const guardianName = req.body.adviserName;
+    const guardianName = req.body.guardianName;
     const adviserName = req.body.adviserName;
 
     const newStudent = new Student({ fullName, birthday, lrn, address, contactNumber, section, guardianName, adviserName });

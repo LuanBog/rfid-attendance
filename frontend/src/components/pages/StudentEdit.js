@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-let fullNameStart;
-
 const StudentEdit = () => {
   const [student, setStudent] = useState();
   const [fullName, setFullName] = useState(""); // I put this here because we don't want to change the name in the EDITING <NAME>
@@ -19,7 +17,7 @@ const StudentEdit = () => {
       .then(res => { 
         if(mounted)
           setStudent(res.data);
-          setFullName(student.fullName);
+          setFullName(res.data.fullName);
       })
       .catch(err => console.error(`Error: ${err}`));
 

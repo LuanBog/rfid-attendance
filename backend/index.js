@@ -5,7 +5,8 @@ require('dotenv').config();
 
 const app = express();
 
-const uri = process.env.MONGODB_CONNECTION
+// const uri = process.env.MONGODB_CONNECTION
+const uri = 'mongodb://127.0.0.1:27017/rfid'
 const port = process.env.PORT || 8000;
 
 // MongoDB

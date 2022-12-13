@@ -1,32 +1,42 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../utils/auth';
 
-const AdminLogin = ({ login, error, forgotPassword }) => {
-  const [details, setDetails] = useState({username: '', password: ''});
+const AdminLogin = () => {
+  const [user, setUser] = useState({username: '', password: ''});
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+  const auth = useAuth();
 
-  const submitHandler = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    login(details);
+    // Set Error when failed
+
+    console.log(user);
+
+    auth.login(user);
+    navigate('/dashboard', { replace: true });
   }
 
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={handleLogin}>
       <h2>Login</h2>
 
       <div className="error">{error}</div>
 
       <div className="form-group">
-        <input type="text" placeholder="Username" id="username" onChange={e => setDetails({...details, username: e.target.value})} value={details.name} />
+        <input type="text" placeholder="Username" id="username" onChange={e => setUser({...user, username: e.target.value})} value={user.name} />
       </div>
 
       <div className="form-group">
-        <input type="password" placeholder="Password"  id="password" onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
+        <input type="password" placeholder="Password"  id="password" onChange={e => setUser({...user, password: e.target.value})} value={user.password} />
       </div>
 
       <input type="submit" value="Login" />
 
       <div>
-        <a href="#" onClick={forgotPassword}>Forgot Password?</a>
+        <a href="#">Forgot Password?</a>
       </div>
     </form>
   );

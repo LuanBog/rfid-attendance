@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../utils/auth';
+import { useAuth } from '../../utils/authentication/auth';
 import { toTitle } from '../../utils/String';
 
 const AdminDashboard = () => {

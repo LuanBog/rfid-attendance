@@ -18,7 +18,7 @@ const AdminDashboard = () => {
 
       {/* PUT THIS CODE BELOW menu left-side WHEN DOING STYLING */}
       <div className="right-side"> 
-        <h1>Welcome, {toTitle(auth.user.username)}!</h1>
+        <h1 className='welcome-msg'>Welcome, <span className='username'>{toTitle(auth.user.username)}!</span></h1>
       </div>
 
       <div className="menu left-side">

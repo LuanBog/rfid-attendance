@@ -13,8 +13,6 @@ const AdminLogin = () => {
 
     // Set Error when failed
 
-    console.log(user);
-
     auth.login(user);
     navigate('/dashboard', { replace: true });
   }
@@ -22,6 +20,8 @@ const AdminLogin = () => {
   return (
     <form onSubmit={handleLogin}>
       <h2>Login</h2>
+
+      {auth.loggedIn() ? "You're already logged in" : ''}
 
       <div className="error">{error}</div>
 

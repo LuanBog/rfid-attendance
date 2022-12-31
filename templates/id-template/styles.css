@@ -3,3 +3,48 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+.container {
+    background-color: rgb(151, 0, 0);
+    width: 65%;
+    height: 50%;
+    margin: 13vh auto;
+    text-align: center;
+    border-radius: 20px;
+}
+
+main {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #fff;
+}
+
+main, .informations {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    gap: 50px;
+}
+
+.info {
+    text-align: left;
+}
+
+.info .key {
+    font-size: 1.1rem;
+}
+
+.info .value {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+footer { 
+    padding: 20px 0;
+}
+
+footer h2 {
+    color: #fff;
+    font-weight: 400;
+}

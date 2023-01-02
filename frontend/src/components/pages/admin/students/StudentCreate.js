@@ -53,7 +53,7 @@ const StudentCreate = () => {
 
         <div className="form-group">
           <label htmlFor="full-name">Full Name:</label>
-          <input type="text" name="full-name" onChange={e => setNewStudent({...newStudent, fullName: e.target.value})} value={newStudent.name} />
+          <input type="text" name="full-name" onChange={e => setNewStudent({...newStudent, fullName: e.target.value})} value={newStudent.fullName} />
         </div>
 
         <div className="form-group">

@@ -22,7 +22,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="menu left-side">
-        <button>Manage Sections</button>
+        <Link to='/sectionview'><button>Manage Sections</button></Link>
         <Link to='/studentview'><button>Manage Students</button></Link>
         <button>View Attendance</button>
       </div>

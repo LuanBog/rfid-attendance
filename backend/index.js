@@ -23,8 +23,10 @@ app.use(cors());
 app.use(express.json());
 
 const studentsRouter = require('./routes/students');
+const sectionRouter = require('./routes/sections');
 
 app.use('/students', studentsRouter);
+app.use('/sections', sectionRouter);
 
 app.listen(port, () => {
     console.log(`Server is listening to http://localhost:${port}`);

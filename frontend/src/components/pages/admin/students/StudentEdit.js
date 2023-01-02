@@ -15,9 +15,10 @@ const StudentEdit = () => {
     
     axios.get(`http://localhost:8000/students/${id}`)
       .then(res => { 
-        if(mounted)
+        if(mounted) {
           setStudent(res.data);
           setFullName(res.data.fullName);
+        }
       })
       .catch(err => console.error(`Error: ${err}`));
 

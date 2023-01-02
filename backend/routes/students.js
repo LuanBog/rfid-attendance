@@ -4,7 +4,7 @@ let Student = require('../models/Student.model');
 router.route('/').get((req, res) => {
     Student.find()
         .then(students => {
-            console.log("Got a request to get data");
+            console.log("[Student] Got a request to get data");
             res.json(students);
         })
         .catch(err => res.status(400).json(`Error: ${err}`));
@@ -26,7 +26,7 @@ router.route('/add').post((req, res) => {
 
     newStudent.save()
         .then(() => {
-            console.log(`Added a new student: ${fullName}`);
+            console.log(`[Student] Added a new student: ${fullName}`);
             res.json(newStudent);
         })
         .catch(err => res.status(400).json(`Error ${err}`));
@@ -35,7 +35,7 @@ router.route('/add').post((req, res) => {
 router.route('/:id').get((req, res) => {
     Student.findById(req.params.id)
         .then(student => {
-            console.log(`Got a request to find student with id of ${req.params.id}`);
+            console.log(`[Student] Got a request to find student with id of ${req.params.id}`);
             res.json(student);
         })
         .catch(err => res.status(400).json(`Error ${err}`));
@@ -43,7 +43,7 @@ router.route('/:id').get((req, res) => {
 router.route('/:id').delete((req, res) => {
     Student.findByIdAndDelete(req.params.id)
         .then(() => {
-            console.log(`Deleted student with id of ${req.params.id}`);
+            console.log(`[Student] Deleted student with id of ${req.params.id}`);
             res.json('Student deleted')
         })
         .catch(err => res.status(400).json(`Error ${err}`));
@@ -62,7 +62,7 @@ router.route('/update/:id').post((req, res) => {
 
             student.save()
                 .then(() => { 
-                    console.log(`${student.fullName} got updated`);
+                    console.log(`[Student] ${student.fullName} got updated`);
                     res.json('Student updated');
                 })
                 .catch(err => res.status(400).json(`Error ${err}`));

@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
 
     if(userCookie) {
       setUser(JSON.parse(userCookie));
-      console.log(userCookie);
     }
   }, []);
 

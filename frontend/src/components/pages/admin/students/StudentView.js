@@ -34,7 +34,6 @@ const StudentView = () => {
     axios.get('http://localhost:8000/students')
       .then(res => {
         setStudents(res.data);
-        console.log(students);
       })
       .catch(err => console.error(err));
   }, []);

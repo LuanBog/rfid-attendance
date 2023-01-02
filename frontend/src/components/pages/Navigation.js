@@ -10,7 +10,7 @@ const Navigation = () => {
         <li><a href='/'>Home</a></li>
         <li><a href='/login'>Login</a></li>
 
-        {auth.loggedIn() ? <li><a href='/dashboard' class='logged-in-color'>Dashboard</a></li> : ''}
+        {auth.loggedIn() ? <li><a href='/dashboard' className='logged-in-color'>Dashboard</a></li> : ''}
       </ul>
     </nav>
   );

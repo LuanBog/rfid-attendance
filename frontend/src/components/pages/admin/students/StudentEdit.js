@@ -4,11 +4,21 @@ import axios from "axios";
 
 const StudentEdit = () => {
   const [student, setStudent] = useState();
+  const [sections, setSections] = useState([]);
   const [fullName, setFullName] = useState(""); // I put this here because we don't want to change the name in the EDITING <NAME>
   const [error, setError] = useState();
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  // Sets the sections
+  useEffect(() => {
+    axios.get('http://localhost:8000/sections')
+      .then(res => {
+        setSections(res.data);
+      })
+      .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -82,10 +92,16 @@ const StudentEdit = () => {
               <input type="text" name="adviser-name" onChange={e => setStudent({...student, adviserName: e.target.value})} value={student.adviserName} />
             </div>
     
-            {/* Need to be changed in the future */}
             <div className="form-group">
               <label htmlFor="section">Section:</label>
-              <input type="text" name="section" onChange={e => setStudent({...student, section: e.target.value})} value={student.section} />
+              {/* <input type="text" name="section" onChange={e => setNewStudent({...newStudent, section: e.target.value})} value={newStudent.section} /> */}
+              <select name="section" onChange={e => setStudent({...student, section: e.target.value})} value={student.section}>
+                <option value="None">None</option>
+
+                {sections.map(section => (
+                  <option value={section.name} key={section.name}>{section.name}</option>
+                ))}
+              </select>
             </div>
     
             <input type="submit" value="Update" />

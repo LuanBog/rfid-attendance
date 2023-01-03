@@ -27,6 +27,18 @@ const StudentCreate = () => {
       .catch(err => console.error(err));
   }, []);
 
+  const addStudentToSection = (student, section) => {
+    const studentUID = student._id;
+    let sectionData = sections.filter(sec => sec.name === section)[0];
+
+    sectionData.students.push(studentUID);
+
+    axios.post(`http://localhost:8000/sections/update/${sectionData._id}`, sectionData)
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   const submitHandler = e => {
     e.preventDefault();
 
@@ -45,8 +57,11 @@ const StudentCreate = () => {
 
     setError('');
 
+    // Adds student to the main database
     axios.post('http://localhost:8000/students/add', newStudent)
-      .then(() => {
+      .then((res) => {
+        addStudentToSection(res.data, newStudent.section);
+        
         console.log("Created!");
         navigate('/studentview');
       })

@@ -42,9 +42,9 @@ router.route('/:id').get((req, res) => {
 });
 router.route('/:id').delete((req, res) => {
     Student.findByIdAndDelete(req.params.id)
-        .then(() => {
+        .then(student => {
             console.log(`[Student] Deleted student with id of ${req.params.id}`);
-            res.json('Student deleted')
+            res.json(student);
         })
         .catch(err => res.status(400).json(`Error ${err}`));
 });
@@ -63,7 +63,7 @@ router.route('/update/:id').post((req, res) => {
             student.save()
                 .then(() => { 
                     console.log(`[Student] ${student.fullName} got updated`);
-                    res.json('Student updated');
+                    res.json(student);
                 })
                 .catch(err => res.status(400).json(`Error ${err}`));
         })

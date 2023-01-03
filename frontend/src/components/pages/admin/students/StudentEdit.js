@@ -5,11 +5,25 @@ import axios from "axios";
 const StudentEdit = () => {
   const [student, setStudent] = useState();
   const [sections, setSections] = useState([]);
+  const [initialSection, setInitialSection] = useState('');
   const [fullName, setFullName] = useState(""); // I put this here because we don't want to change the name in the EDITING <NAME>
   const [error, setError] = useState();
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const moveStudentFromSection = (studentUID, initialSection, newSection) => {
+    if(initialSection === newSection) return;
+
+    let initialSectionData = sections.filter(sec => sec.name === initialSection)[0];
+    let newSectionData = sections.filter(sec => sec.name === newSection)[0];
+
+    initialSectionData.students = initialSectionData.students.filter(id => id !== studentUID);
+    newSectionData.students.push(studentUID);
+
+    axios.post(`http://localhost:8000/sections/update/${initialSectionData._id}`, initialSectionData)
+    axios.post(`http://localhost:8000/sections/update/${newSectionData._id}`, newSectionData)
+  }
 
   // Sets the sections
   useEffect(() => {
@@ -28,6 +42,7 @@ const StudentEdit = () => {
         if(mounted) {
           setStudent(res.data);
           setFullName(res.data.fullName);
+          setInitialSection(res.data.section);
         }
       })
       .catch(err => console.error(`Error: ${err}`));
@@ -42,6 +57,7 @@ const StudentEdit = () => {
 
     axios.post(`http://localhost:8000/students/update/${student._id}`, student)
     .then(() => {
+      moveStudentFromSection(student._id, initialSection, student.section);
       navigate(`/studentview`);
     })
     .catch(err => {

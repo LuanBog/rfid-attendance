@@ -29,6 +29,26 @@ const StudentBlock = ({ student, handleDelete }) => {
 
 const StudentView = () => {
   const [students, setStudents] = useState([]);
+  const [sections, setSections] = useState([]);
+
+  const removeStudentFromSection = (studentUID, section) => {
+    let sectionData = sections.filter(sec => sec.name === section)[0];
+    
+    sectionData.students = sectionData.students.filter(id => id !== studentUID);
+
+    axios.post(`http://localhost:8000/sections/update/${sectionData._id}`, sectionData)
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  useEffect(() => {
+    axios.get('http://localhost:8000/sections')
+    .then(res => {
+      setSections(res.data);
+    })
+    .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     axios.get('http://localhost:8000/students')
@@ -40,9 +60,10 @@ const StudentView = () => {
 
   const handleDelete = (id) => {    
     axios.delete(`http://localhost:8000/students/${id}`)
-      .then(() => {
+      .then(res => {
+        removeStudentFromSection(id, res.data.section);
         setStudents(students.filter(student => student._id !== id));
-
+      
         console.log(`Deleted student with the id of ${id}`);
       })
       .catch(err => {

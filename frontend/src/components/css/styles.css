@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: 'Lato', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+nav {
+    background-color: gray;
+}
+
+nav ul {
+    display: flex;
+    justify-content: right;
+    padding: 20px 8rem;
+}
+
+nav ul li {
+    list-style: none;
+    padding: 0 5px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.logged-in-color {
+    color: yellow;
+}
+
+.welcome-msg {
+    font-weight: 400;
+}
+.username {
+    font-weight: bold;
+}

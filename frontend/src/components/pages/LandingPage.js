@@ -15,8 +15,8 @@ const LandingPage = () => {
       <ul>
         <li>Mechel Estole Derecho - TLE Teacher</li>
         <li>Luis Andrei Gequinto</li>
-        <li>Arianne Nipales</li>
-        <li>Christanne George Avellano</li>
+        <li>Ariane Nipales</li>
+        <li>Christanne Jorge Avellano</li>
         <li>Graceshielle Nina Aganan</li>
         <li>John Paul Bantoc</li>
         <li>Kean Adreyll Maguyon</li>

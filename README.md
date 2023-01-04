@@ -11,8 +11,8 @@ This is the website that the admins and advisers have access to, to be able to s
 ## Developers
 - Mechel Estole Derecho - TLE Teacher
 - Luis Andrei Gequinto
-- Arianne Nipales
-- Christanne George Avellano
+- Ariane Nipales
+- Christanne Jorge Avellano
 - Graceshielle Nina Aganan
 - John Paul Bantoc
 - Kean Adreyll Maguyon

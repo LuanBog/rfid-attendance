@@ -1,27 +1,73 @@
-import React from "react";
+import React, { useState } from 'react';
+import topRight from '../images/landing-page/top-right.png';
+import topLeft from '../images/landing-page/top-left.png';
+import '../css/landing-page-styles.css';
+
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useAuth } from '../utils/authentication/auth';
+import Cookies from 'js-cookie';
 
 const LandingPage = () => {
+  const [user, setUser] = useState({username: '', password: ''});
+  const [error, setError] = useState();
+  const auth = useAuth();
+  const navigate = useNavigate();
+
+  if(auth.loggedIn() && Cookies.get('user')) {
+    console.log("Already logged in, go back to the dashboard");
+    return <Navigate to="/dashboard" />
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // Set Error when failed
+
+    auth.login(user);
+    navigate('/dashboard', { replace: true });
+  }
+
   return (
     <>
-      <h1>RFID Attendance</h1>
+      <img src={topRight} width="600" id="top-right-design" className="design" />
+      <img src={topLeft} alt="" width="600" id="top-left-design" className="design" />
 
-      <h2>Abstract</h2>
-      <p>Different schools from other countries have already implemented new and advanced technologies to help them manage their class time efficiently, due to the demanding world of today. The use of RFID cards caught the attention of some researchers in tracking the attendance as well as keeping the learner's record. An attendance tracking device which can lessen the time consumed in taking the conventional method checking and to reduce the teachers' traditional and manual attendance monitoring and focus more on tracking and learning. this attendance tracking device will use Radio Frequency Identification (RFID) as the tracking device and powered by Arduino Uno which serves as the brain (controller) of the system instead of using the conventional Identification Card. The recorded attendance can be downloaded through Universal Serial Bus (USB). If this innovation will be permitted this can be use in each classroom for more refined attendance tracking and a separate RFID student Identification in the main gate in identifying legit student of this institution. </p>
+      <div className="container">
+        <div className="left-side">
+          <h1 className="title">DMDPNHS</h1>
+          <h2 className="sub-title">RFID-Based Attendance</h2>
+        </div>
 
-      <h2>What this is</h2>
-      <p>This is the website that the admins and advisers have access to, to be able to see the attendance of their advisory.</p>
+        <div className="right-side">
+          <form onSubmit={handleLogin}>
+            <div className="form-input">
+              <input type="text" placeholder="Username" onChange={e => setUser({...user, username: e.target.value})} value={user.name} />
+            </div>
 
-      <h2>The Developers</h2>
-      <ul>
-        <li>Mechel Estole Derecho - TLE Teacher</li>
-        <li>Luis Andrei Gequinto</li>
-        <li>Ariane Nipales</li>
-        <li>Christanne Jorge Avellano</li>
-        <li>Graceshielle Nina Aganan</li>
-        <li>John Paul Bantoc</li>
-        <li>Kean Adreyll Maguyon</li>
-        <li>Michael Angelo Nañez</li>
-      </ul>
+            <div className="form-input">
+              <input type="password" placeholder="Password" onChange={e => setUser({...user, password: e.target.value})} value={user.password} />
+            </div>
+            
+            <div className="form-input">
+              <input type="submit" value="Log in" className="cta" />
+            </div>
+
+            <div>
+              <button className="create-acc">Create new account</button>
+            </div>
+            
+            <div>
+              <a href="#" id="forgot-pass">Forgot Password?</a>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer>
+          <div>SSP-Einstein Project 2023</div>
+          <div>RFID-Based Attendance</div>
+          <div>2nd Grading</div>
+      </footer>
     </>
   );
 }

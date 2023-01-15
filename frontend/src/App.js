@@ -25,7 +25,7 @@ import './components/css/styles.css';
 const App = () => {
   return (
     <AuthProvider>
-      <Navigation />
+      {/* <Navigation /> */}
 
       <Router> 
         <Routes>

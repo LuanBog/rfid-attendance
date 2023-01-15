@@ -1,0 +1,14 @@
+.container {
+    text-align: center;    
+}
+
+.welcome {
+    font-size: 2.2rem;
+    padding-top: 50px;
+}
+
+.selections {
+    display: flex;
+    padding: 25vh 10vw;
+    justify-content: space-between;
+}

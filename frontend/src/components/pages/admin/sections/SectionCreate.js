@@ -7,6 +7,7 @@ const SectionCreate = () => {
 
   const [newSection, setNewSection] = useState({
     name: "",
+    adviserName: "",
     gradeLevel: "",
     students: []
   });
@@ -50,6 +51,11 @@ const SectionCreate = () => {
         <div className="form-group">
           <label htmlFor="name">Section Name:</label>
           <input type="text" name="name" onChange={e => setNewSection({...newSection, name: e.target.value})} value={newSection.name} />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="adviser-name">Adviser Name:</label>
+          <input type="text" name="adviser-name" onChange={e => setNewSection({...newSection, adviserName: e.target.value})} value={newSection.adviserName} />
         </div>
 
         <div className="form-group">

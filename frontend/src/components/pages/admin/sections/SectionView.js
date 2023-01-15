@@ -9,6 +9,7 @@ const SectionBlock = ({ section, handleDelete }) => {
   return (
     <tr>
       <td>{section.name}</td>
+      <td>{section.adviserName}</td>
       <td>{section.gradeLevel}</td>
       <td>{section.students.length}</td>
 
@@ -54,6 +55,7 @@ const SectionView = () => {
 
               <tr>
                 <th>Name</th>
+                <th>Adviser</th>
                 <th>Grade Level</th>
                 <th>Students</th>
               </tr>

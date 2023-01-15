@@ -5,6 +5,7 @@ import axios from "axios";
 const SectionEdit = () => {
   const [section, setSection] = useState({
     name: "",
+    adviserName: "",
     gradeLevel: "",
     students: []
   });
@@ -54,6 +55,11 @@ const SectionEdit = () => {
             <div className="form-group">
               <label htmlFor="name">Section Name:</label>
               <input type="text" name="name" onChange={e => setSection({...section, name: e.target.value})} value={section.name} />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="adviser-name">Adviser Name:</label>
+              <input type="text" name="adviser-name" onChange={e => setSection({...section, adviserName: e.target.value})} value={section.adviserName} />
             </div>
 
             <div className="form-group">

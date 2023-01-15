@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const StudentEdit = () => {
-  const [student, setStudent] = useState();
+  const [student, setStudent] = useState({
+    fullName: "",
+    lrn: "",
+    address: "",
+    contactNumber: "",
+    birthday: "",
+    guardianName: "",
+    section: "",
+    adviserName: ""
+  });
   const [sections, setSections] = useState([]);
   const [initialSection, setInitialSection] = useState('');
   const [fullName, setFullName] = useState(""); // I put this here because we don't want to change the name in the EDITING <NAME>
@@ -11,6 +20,8 @@ const StudentEdit = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const adviserNameRef = useRef();
 
   const moveStudentFromSection = (studentUID, initialSection, newSection) => {
     if(initialSection === newSection) return;
@@ -65,6 +76,17 @@ const StudentEdit = () => {
     });
   }
 
+  useEffect(() => {
+    const sectionData = sections.filter(sec => sec.name === student.section)[0];
+
+    if(sectionData)
+      student.adviserName = sectionData.adviserName;
+    else
+      student.adviserName = "";
+
+    adviserNameRef.current.value = student.adviserName;
+  }, [student.section]);
+
   return (
     <>
       {student !== undefined ? (
@@ -104,11 +126,6 @@ const StudentEdit = () => {
             </div>
             
             <div className="form-group">
-              <label htmlFor="adviser-name">Adviser Name:</label>
-              <input type="text" name="adviser-name" onChange={e => setStudent({...student, adviserName: e.target.value})} value={student.adviserName} />
-            </div>
-    
-            <div className="form-group">
               <label htmlFor="section">Section:</label>
               {/* <input type="text" name="section" onChange={e => setNewStudent({...newStudent, section: e.target.value})} value={newStudent.section} /> */}
               <select name="section" onChange={e => setStudent({...student, section: e.target.value})} value={student.section}>
@@ -118,6 +135,11 @@ const StudentEdit = () => {
                   <option value={section.name} key={section.name}>{section.name}</option>
                 ))}
               </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="adviser-name">Adviser Name:</label>
+              <input type="text" name="adviser-name" ref={adviserNameRef} readOnly />
             </div>
     
             <input type="submit" value="Update" />

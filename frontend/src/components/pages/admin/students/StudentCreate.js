@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -12,11 +12,12 @@ const StudentCreate = () => {
     contactNumber: "",
     birthday: "",
     guardianName: "",
-    adviserName: "",
-    section: ""
+    section: "",
+    adviserName: ""
   });
   const [sections, setSections] = useState([]);
   const [error, setError] = useState("");
+  const adviserNameRef = useRef();
 
   // Sets the sections
   useEffect(() => {
@@ -70,6 +71,17 @@ const StudentCreate = () => {
       });
   }
 
+  useEffect(() => {
+    const sectionData = sections.filter(sec => sec.name === newStudent.section)[0];
+
+    if(sectionData)
+      newStudent.adviserName = sectionData.adviserName;
+    else
+      newStudent.adviserName = "";
+
+    adviserNameRef.current.value = newStudent.adviserName;
+  }, [newStudent.section]);
+
   return (
     <form onSubmit={submitHandler}>
       <h1>CREATE NEW STUDENT</h1>
@@ -104,11 +116,6 @@ const StudentCreate = () => {
         <label htmlFor="guardian-name">Guardian Name:</label>
         <input type="text" name="guardian-name" onChange={e => setNewStudent({...newStudent, guardianName: e.target.value})} value={newStudent.guardianName} />
       </div>
-      
-      <div className="form-group">
-        <label htmlFor="adviser-name">Adviser Name:</label>
-        <input type="text" name="adviser-name" onChange={e => setNewStudent({...newStudent, adviserName: e.target.value})} value={newStudent.adviserName} />
-      </div>
 
       <div className="form-group">
         <label htmlFor="section">Section:</label>
@@ -120,6 +127,12 @@ const StudentCreate = () => {
             <option value={section.name} key={section.name}>{section.name}</option>
           ))}
         </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="adviser-name">Adviser Name:</label>
+        {/* <input type="text" name="adviser-name" onChange={e => setNewStudent({...newStudent, adviserName: e.target.value})} value={newStudent.adviserName} /> */}
+        <input type="text" name="adviser-name" ref={adviserNameRef} readOnly />
       </div>
 
       <input type="submit" value="Create" />

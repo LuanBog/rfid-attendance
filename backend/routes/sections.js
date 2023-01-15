@@ -14,10 +14,11 @@ router.route('/add').post((req, res) => {
     console.log(req);
 
     const name = req.body.name;
+    const adviserName = req.body.adviserName;
     const gradeLevel = Number(req.body.gradeLevel);
     const students = req.body.students;
 
-    const newSection = new Section({ name, gradeLevel, students });
+    const newSection = new Section({ name, adviserName, gradeLevel, students });
 
     newSection.save()
         .then(() => {
@@ -47,6 +48,7 @@ router.route('/update/:id').post((req, res) => {
     Section.findById(req.params.id)
         .then(section => {
             section.name = req.body.name;
+            section.adviserName = req.body.adviserName;
             section.gradeLevel = Number(req.body.gradeLevel);
             section.students = req.body.students;
 

@@ -14,15 +14,17 @@ router.route('/add').post((req, res) => {
     console.log(req);
 
     const fullName = req.body.fullName;
+    const sex = req.body.sex;
     const birthday = Date.parse(req.body.birthday);
     const lrn = Number(req.body.lrn);
+    const uid = req.body.uid;
     const address = req.body.address;
     const contactNumber = Number(req.body.contactNumber);
     const section = req.body.section;
     const guardianName = req.body.guardianName;
     const adviserName = req.body.adviserName;
 
-    const newStudent = new Student({ fullName, birthday, lrn, address, contactNumber, section, guardianName, adviserName });
+    const newStudent = new Student({ fullName, sex, birthday, lrn, uid, address, contactNumber, section, guardianName, adviserName });
 
     newStudent.save()
         .then(() => {
@@ -52,8 +54,10 @@ router.route('/update/:id').post((req, res) => {
     Student.findById(req.params.id)
         .then(student => {
             student.fullName = req.body.fullName;
+            student.sex = req.body.sex;
             student.birthday = Date.parse(req.body.birthday);
             student.lrn = Number(req.body.lrn);
+            student.uid = req.body.uid;
             student.address = req.body.address;
             student.contactNumber = Number(req.body.contactNumber);
             student.section = req.body.section;

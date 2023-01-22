@@ -8,9 +8,11 @@ const StudentCreate = () => {
   const [newStudent, setNewStudent] = useState({
     fullName: "",
     lrn: "",
+    uid: "",
     address: "",
     contactNumber: "",
     birthday: "",
+    sex: "Male",
     guardianName: "",
     section: "",
     adviserName: ""
@@ -98,6 +100,11 @@ const StudentCreate = () => {
       </div>
 
       <div className="form-group">
+        <label htmlFor="uid">UID:</label>
+        <input type="text" name="uid" onChange={e => setNewStudent({...newStudent, uid: e.target.value})} value={newStudent.uid} />
+      </div>
+
+      <div className="form-group">
         <label htmlFor="address">Address:</label>
         <input type="text" name="address" onChange={e => setNewStudent({...newStudent, address: e.target.value})} value={newStudent.address} />
       </div>
@@ -111,7 +118,15 @@ const StudentCreate = () => {
         <label htmlFor="birthday">Birthday:</label>
         <input type="date" name="birthday" onChange={e => setNewStudent({...newStudent, birthday: e.target.value})} value={newStudent.birthday} />
       </div>
-      
+    
+      <div className="form-group">
+        <label htmlFor="sex">Sex:</label>
+        <select name="section" onChange={e => setNewStudent({...newStudent, sex: e.target.value})} value={newStudent.sex}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+
       <div className="form-group">
         <label htmlFor="guardian-name">Guardian Name:</label>
         <input type="text" name="guardian-name" onChange={e => setNewStudent({...newStudent, guardianName: e.target.value})} value={newStudent.guardianName} />
@@ -119,7 +134,6 @@ const StudentCreate = () => {
 
       <div className="form-group">
         <label htmlFor="section">Section:</label>
-        {/* <input type="text" name="section" onChange={e => setNewStudent({...newStudent, section: e.target.value})} value={newStudent.section} /> */}
         <select name="section" onChange={e => setNewStudent({...newStudent, section: e.target.value})} value={newStudent.section}>
           <option value="None">None</option>
 
@@ -131,7 +145,6 @@ const StudentCreate = () => {
 
       <div className="form-group">
         <label htmlFor="adviser-name">Adviser Name:</label>
-        {/* <input type="text" name="adviser-name" onChange={e => setNewStudent({...newStudent, adviserName: e.target.value})} value={newStudent.adviserName} /> */}
         <input type="text" name="adviser-name" ref={adviserNameRef} readOnly />
       </div>
 

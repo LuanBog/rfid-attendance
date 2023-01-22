@@ -11,10 +11,12 @@ const StudentBlock = ({ student, handleDelete }) => {
   return (
     <tr>
       <td>{student.fullName}</td>
+      <td>{student.uid}</td>
       <td>{student.lrn}</td>
       <td>{student.address}</td>
       <td>{student.contactNumber}</td>
       <td>{birthdayObject.toLocaleDateString("en-US")}</td>
+      <td>{student.sex}</td>
       <td>{student.guardianName}</td>
       <td>{student.adviserName}</td>
       <td>{student.section}</td>
@@ -83,9 +85,11 @@ const StudentView = () => {
               <tr>
                 <th>Name</th>
                 <th>LRN</th>
+                <th>UID</th>
                 <th>Address</th>
                 <th>Contact No.</th>
                 <th>Birthday</th>
+                <th>Sex</th>
                 <th>Guardian</th>
                 <th>Adviser</th>
                 <th>Section</th>

@@ -6,9 +6,11 @@ const StudentEdit = () => {
   const [student, setStudent] = useState({
     fullName: "",
     lrn: "",
+    uid: "",
     address: "",
     contactNumber: "",
     birthday: "",
+    sex: "Male",
     guardianName: "",
     section: "",
     adviserName: ""
@@ -104,6 +106,11 @@ const StudentEdit = () => {
               <label htmlFor="lrn">LRN:</label>
               <input type="number" name="lrn" onChange={e => setStudent({...student, lrn: e.target.value})} value={student.lrn} />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="uid">UID:</label>
+              <input type="text" name="uid" onChange={e => setStudent({...student, uid: e.target.value})} value={student.uid} />
+            </div>
     
             <div className="form-group">
               <label htmlFor="address">Address:</label>
@@ -118,6 +125,14 @@ const StudentEdit = () => {
             <div className="form-group">
               <label htmlFor="birthday">Birthday:</label>
               <input type="date" name="birthday" onChange={e => setStudent({...student, birthday: e.target.value})} value={student.birthday} />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="sex">Sex:</label>
+              <select name="section" onChange={e => setStudent({...student, sex: e.target.value})} value={student.sex}>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
             </div>
             
             <div className="form-group">

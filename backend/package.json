@@ -7,7 +7,7 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "devStart": "nodemon index.js"
+    "server": "nodemon index.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

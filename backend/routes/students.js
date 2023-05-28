@@ -23,8 +23,9 @@ router.route('/add').post((req, res) => {
     const section = req.body.section;
     const guardianName = req.body.guardianName;
     const adviserName = req.body.adviserName;
+    const attendance = [];
 
-    const newStudent = new Student({ fullName, sex, birthday, lrn, uid, address, contactNumber, section, guardianName, adviserName });
+    const newStudent = new Student({ fullName, sex, birthday, lrn, uid, address, contactNumber, section, guardianName, adviserName, attendance });
 
     newStudent.save()
         .then(() => {

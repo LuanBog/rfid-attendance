@@ -11,7 +11,8 @@ const studentSchema = new Schema({
     contactNumber: { type: Number, required: true },
     section: { type: String, required: true },
     guardianName: { type: String, required: true },
-    adviserName: { type: String, required: true }
+    adviserName: { type: String, required: true },
+    attendance: { type: Array, required: false }
 });
 
 const Student = mongoose.model("Student", studentSchema);

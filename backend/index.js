@@ -24,9 +24,11 @@ app.use(express.json());
 
 const studentsRouter = require('./routes/students');
 const sectionRouter = require('./routes/sections');
+const attendanceRouter = require('./routes/attendance');
 
 app.use('/students', studentsRouter);
 app.use('/sections', sectionRouter);
+app.use('/attendance', attendanceRouter);
 
 app.listen(port, () => {
     console.log(`Server is listening to http://localhost:${port}`);
